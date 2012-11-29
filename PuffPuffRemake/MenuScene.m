@@ -74,6 +74,16 @@
 
 -(void)play: (id)sender{
     
+    if ([AppDelegate get].withSound) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"ButtonPress.caf"pitch:1.0f pan:0.0 gain:1];
+    }
+
+    if ([AppDelegate get].withSound) {
+        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+    }
+    [AppDelegate get].wentToGame = YES;
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.2f scene:[GameScene node]]];
     
 }
 

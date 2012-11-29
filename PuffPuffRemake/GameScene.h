@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "AppDelegate.h"
+#import "MenuScene.h"
 
 @interface GameScene : CCLayer {
     
 }
-
++(id)scene;
 @end
