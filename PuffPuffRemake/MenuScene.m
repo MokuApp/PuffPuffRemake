@@ -7,7 +7,7 @@
 //
 
 #import "MenuScene.h"
-
+#import "GameScene.h"
 
 @implementation MenuScene
 
@@ -25,6 +25,11 @@
     if ((self = [super init])) {
         
         isTouchEnabled_ = YES;
+        
+        if ([AppDelegate get].withSound && [AppDelegate get].wentToGame) {
+            [self schedule:@selector(delayMusic) interval:1];
+            [AppDelegate get].wentToGame = NO;
+        }
         
         CCSprite *bg = [CCSprite spriteWithFile:@"mm_back.png"];
         [bg setPosition:ccp(240, 160)];
@@ -60,6 +65,12 @@
     return self;
 }
 
+-(void)delayMusic
+{
+    [self unschedule:@selector(delayMusic)];
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"PuffPuff_GameIntroLoop.caf" loop:YES];
+    
+}
 
 -(void)play: (id)sender{
     
@@ -78,4 +89,7 @@
     
     
 }
+
+  
+
 @end

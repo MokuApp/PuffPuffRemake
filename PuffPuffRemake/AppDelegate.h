@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CocosDenshion.h"
+#import "SimpleAudioEngine.h"
 
-#define CGROUP_LOOPS 0
 
 @class RootViewController;
 
@@ -17,7 +16,6 @@
 	UIWindow			*window;
 	RootViewController	*viewController;
     
-    CDSoundEngine *soundEngine;	
     bool withSound;
     bool wentToGame;
 }
@@ -26,6 +24,5 @@
 @property (nonatomic, retain) UIWindow *window;
 @property(readwrite,nonatomic) bool wentToGame;
 @property(readwrite,nonatomic) bool withSound;
-@property(readwrite,nonatomic) CDSoundEngine *soundEngine;
 
 @end

@@ -10,14 +10,13 @@
 
 #import "AppDelegate.h"
 #import "GameConfig.h"
-#import "HelloWorldLayer.h"
 #import "SplashScene.h"
 #import "RootViewController.h"
 
 @implementation AppDelegate
 
 @synthesize window;
-@synthesize soundEngine,withSound,wentToGame;
+@synthesize withSound,wentToGame;
 
 - (void) removeStartupFlicker
 {
@@ -113,17 +112,9 @@
     
     withSound = YES;
     
-    self.soundEngine = [[CDSoundEngine alloc] init];
-    NSArray *defs = [NSArray arrayWithObjects:
-                     [NSNumber numberWithInt:1],
-                     [NSNumber numberWithInt:12],
-                     [NSNumber numberWithInt:18], nil];
-    [self.soundEngine defineSourceGroups:defs];
-    [[AppDelegate get].soundEngine loadBuffer:0 filePath:@"PuffPuff_GamePlayMusic.caf"];
-    [[AppDelegate get].soundEngine loadBuffer:14 filePath:@"PuffPuff_GameIntroLoop.caf"];
-    
     if (withSound) {
-        [[AppDelegate get].soundEngine playSound:14 sourceGroupId:CGROUP_LOOPS pitch:1.0f pan:0.0 gain:1 loop:YES];
+
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"PuffPuff_GameIntroLoop.caf" loop:YES];
     }
     
 	

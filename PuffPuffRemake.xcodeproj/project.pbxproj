@@ -147,7 +147,6 @@
 		35BDD2FE1666358F00E7343C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BDD2FD1666358F00E7343C /* main.m */; };
 		35BDD3011666358F00E7343C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BDD3001666358F00E7343C /* AppDelegate.m */; };
 		35BDD3041666358F00E7343C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BDD3031666358F00E7343C /* RootViewController.m */; };
-		35BDD3071666359000E7343C /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BDD3061666359000E7343C /* HelloWorldLayer.m */; };
 		35BDD30A1666359000E7343C /* grossini_dance_atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 35BDD3091666359000E7343C /* grossini_dance_atlas.png */; };
 		35BDD31216663ED900E7343C /* SplashScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BDD31116663ED900E7343C /* SplashScene.m */; };
 		35BDD36616663F6600E7343C /* Booster.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35BDD31316663F6500E7343C /* Booster.caf */; };
@@ -233,6 +232,7 @@
 		35BDD3B616663F6600E7343C /* uifont2_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 35BDD36416663F6600E7343C /* uifont2_0.png */; };
 		35BDD3B716663F6600E7343C /* uifont2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 35BDD36516663F6600E7343C /* uifont2.fnt */; };
 		35E1B513166738470008509C /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1B512166738470008509C /* MenuScene.m */; };
+		35E1B517166772D60008509C /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1B516166772D50008509C /* GameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -528,8 +528,6 @@
 		35BDD3001666358F00E7343C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		35BDD3021666358F00E7343C /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		35BDD3031666358F00E7343C /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		35BDD3051666358F00E7343C /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		35BDD3061666359000E7343C /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		35BDD3081666359000E7343C /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		35BDD3091666359000E7343C /* grossini_dance_atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grossini_dance_atlas.png; path = Resources/grossini_dance_atlas.png; sourceTree = "<group>"; };
 		35BDD31016663ED900E7343C /* SplashScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScene.h; sourceTree = "<group>"; };
@@ -618,6 +616,8 @@
 		35BDD36516663F6600E7343C /* uifont2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = uifont2.fnt; path = Resources/uifont2.fnt; sourceTree = "<group>"; };
 		35E1B511166738470008509C /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		35E1B512166738470008509C /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
+		35E1B515166772D50008509C /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		35E1B516166772D50008509C /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -678,13 +678,13 @@
 				35BDD3001666358F00E7343C /* AppDelegate.m */,
 				35BDD3021666358F00E7343C /* RootViewController.h */,
 				35BDD3031666358F00E7343C /* RootViewController.m */,
-				35BDD3051666358F00E7343C /* HelloWorldLayer.h */,
-				35BDD3061666359000E7343C /* HelloWorldLayer.m */,
 				35BDD3081666359000E7343C /* GameConfig.h */,
 				35BDD31016663ED900E7343C /* SplashScene.h */,
 				35BDD31116663ED900E7343C /* SplashScene.m */,
 				35E1B511166738470008509C /* MenuScene.h */,
 				35E1B512166738470008509C /* MenuScene.m */,
+				35E1B515166772D50008509C /* GameScene.h */,
+				35E1B516166772D50008509C /* GameScene.m */,
 				35BDD1521666358A00E7343C /* Resources */,
 				35BDD1661666358A00E7343C /* libs */,
 				35BDD2FB1666358F00E7343C /* Supporting Files */,
@@ -1496,9 +1496,9 @@
 				35BDD2FE1666358F00E7343C /* main.m in Sources */,
 				35BDD3011666358F00E7343C /* AppDelegate.m in Sources */,
 				35BDD3041666358F00E7343C /* RootViewController.m in Sources */,
-				35BDD3071666359000E7343C /* HelloWorldLayer.m in Sources */,
 				35BDD31216663ED900E7343C /* SplashScene.m in Sources */,
 				35E1B513166738470008509C /* MenuScene.m in Sources */,
+				35E1B517166772D60008509C /* GameScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
