@@ -7,7 +7,7 @@
 //
 
 #import "SplashScene.h"
-#import "HelloWorldLayer.h"
+#import "MenuScene.h"
 
 
 @implementation SplashScene
@@ -41,7 +41,7 @@
 {
     [self unschedule:@selector(aaa)];
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:2 scene:[HelloWorldLayer scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:2 scene:[MenuScene scene]]];
 }
 
 
