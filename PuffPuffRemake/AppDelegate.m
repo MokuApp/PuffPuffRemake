@@ -110,6 +110,11 @@
 	// Removes the startup flicker
 	[self removeStartupFlicker];
     
+    
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"puffsheet.plist"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"puffBE.plist"];
+    
+    
     withSound = YES;
     
     if (withSound) {

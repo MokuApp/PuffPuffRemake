@@ -29,7 +29,82 @@
 #import "CCParticleExamples.h"
 #import "CCTextureCache.h"
 #import "CCDirector.h"
+
 #import "Support/CGPointExtension.h"
+
+@implementation CCParticleBubble
+-(id) init
+{
+	return [self initWithTotalParticles:10];
+}
+
+-(id) initWithTotalParticles:(int) p
+{
+	if( !(self=[super initWithTotalParticles:p]) )
+		return nil;
+	self.emitterMode = kCCParticleModeGravity;
+	
+	// duration
+	duration = -1;
+	
+	// gravity
+	self.gravity = ccp(0,0);
+	
+	// angle
+	angle = 90;
+	angleVar = 10;
+	
+	// radial acceleration
+	self.radialAccel = 0;
+	self.radialAccelVar = 0;
+	
+	// emitter position
+	CGSize winSize = [[CCDirector sharedDirector] winSize];
+	self.position = ccp(winSize.width/2, 60);
+	posVar = ccp(0, 0);
+	
+	// life of particles
+	life = 10;
+	lifeVar = 0.25f;
+	
+	// speed of particles
+	self.speed = 60;
+	self.speedVar = 20;
+	
+	// size, in pixels
+	startSize = 10.0f;
+	startSizeVar = 10.0f;
+	endSize = kParticleStartSizeEqualToEndSize;
+	
+	// emits per frame
+	emissionRate = 3;
+	
+	// color of particles
+	startColor.r = 1.0f;
+	startColor.g = 1.0f;
+	startColor.b = 1.0f;
+	startColor.a = 1.0f;
+	startColorVar.r = 0.0f;
+	startColorVar.g = 0.0f;
+	startColorVar.b = 0.0f;
+	startColorVar.a = 0.0f;
+	endColor.r = 0.0f;
+	endColor.g = 0.0f;
+	endColor.b = 0.0f;
+	endColor.a = 0.0f;
+	endColorVar.r = 0.0f;
+	endColorVar.g = 0.0f;
+	endColorVar.b = 0.0f;
+	endColorVar.a = 0.0f;
+	
+	self.texture = [[CCTextureCache sharedTextureCache] addImage: @"bubble.png"];
+	
+	// additive
+	self.blendAdditive = YES;
+	
+	return self;
+}
+@end
 
 //
 // ParticleFireworks

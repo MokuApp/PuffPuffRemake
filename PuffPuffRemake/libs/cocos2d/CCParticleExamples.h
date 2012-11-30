@@ -109,3 +109,9 @@
 {
 }
 @end
+
+
+@interface CCParticleBubble : ARCH_OPTIMAL_PARTICLE_SYSTEM
+{
+}
+@end

@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "AppDelegate.h"
 #import "MenuScene.h"
+#import "CCParticleExamples.h"
 
 @interface GameScene : CCLayer {
     

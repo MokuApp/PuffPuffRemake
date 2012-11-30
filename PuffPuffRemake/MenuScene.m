@@ -62,6 +62,32 @@
         [menu setPosition:ccp(0,0)];
         [self addChild:menu];
         
+        
+        NSMutableArray *animFrames = [[NSMutableArray alloc] init];
+        for (int i =1; i <=15; i++) {
+            CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"fin_%d.png",i]];
+            [animFrames addObject:frame];
+        }
+        
+        CCSprite *fin = [CCSprite spriteWithSpriteFrameName:@"fin_1.png"];
+        [self addChild:fin];
+        [fin setPosition:ccp(125,202)];
+        
+        CCAnimation *animation = [CCAnimation animationWithFrames:animFrames delay:0.1f];
+        [fin runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animation restoreOriginalFrame:NO]]];
+        
+        [animFrames release];
+        
+        CCSprite *puff = [CCSprite spriteWithSpriteFrameName:@"body.png"];
+        [self addChild:puff];
+        [puff setPosition:ccp(148,208)];
+        
+        
+        CCParticleBubble *bubbles = [[CCParticleBubble alloc] initWithTotalParticles:20];
+        [self addChild:bubbles];
+        [bubbles setPosition:ccp(170, 208)];
+        [bubbles release];
+        
     }
     return self;
 }
