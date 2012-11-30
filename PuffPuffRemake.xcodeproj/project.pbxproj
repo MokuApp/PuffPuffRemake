@@ -233,6 +233,7 @@
 		35BDD3B716663F6600E7343C /* uifont2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 35BDD36516663F6600E7343C /* uifont2.fnt */; };
 		35E1B513166738470008509C /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1B512166738470008509C /* MenuScene.m */; };
 		35E1B517166772D60008509C /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1B516166772D50008509C /* GameScene.m */; };
+		35E1B51A16684F2A0008509C /* AboutScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1B51916684F290008509C /* AboutScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -618,6 +619,8 @@
 		35E1B512166738470008509C /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 		35E1B515166772D50008509C /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		35E1B516166772D50008509C /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		35E1B51816684F290008509C /* AboutScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutScene.h; sourceTree = "<group>"; };
+		35E1B51916684F290008509C /* AboutScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -685,6 +688,8 @@
 				35E1B512166738470008509C /* MenuScene.m */,
 				35E1B515166772D50008509C /* GameScene.h */,
 				35E1B516166772D50008509C /* GameScene.m */,
+				35E1B51816684F290008509C /* AboutScene.h */,
+				35E1B51916684F290008509C /* AboutScene.m */,
 				35BDD1521666358A00E7343C /* Resources */,
 				35BDD1661666358A00E7343C /* libs */,
 				35BDD2FB1666358F00E7343C /* Supporting Files */,
@@ -1499,6 +1504,7 @@
 				35BDD31216663ED900E7343C /* SplashScene.m in Sources */,
 				35E1B513166738470008509C /* MenuScene.m in Sources */,
 				35E1B517166772D60008509C /* GameScene.m in Sources */,
+				35E1B51A16684F2A0008509C /* AboutScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1520,7 +1526,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1535,7 +1541,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
@@ -1551,6 +1557,7 @@
 				GCC_PREFIX_HEADER = PuffPuffRemake/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = PuffPuffRemake/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"PuffPuffRemake/libs/Chipmunk/include/chipmunk\"";
@@ -1567,6 +1574,7 @@
 				GCC_PREFIX_HEADER = PuffPuffRemake/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = PuffPuffRemake/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"PuffPuffRemake/libs/Chipmunk/include/chipmunk\"";

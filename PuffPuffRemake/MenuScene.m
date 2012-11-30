@@ -7,6 +7,7 @@
 //
 
 #import "MenuScene.h"
+#import "AboutScene.h"
 #import "GameScene.h"
 
 @implementation MenuScene
@@ -89,8 +90,12 @@
 
 -(void)about: (id)sender{
     
-    
+    if ([AppDelegate get].withSound) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"ButtonPress.caf"pitch:1.0f pan:0.0 gain:1];
+    }
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.2f scene:[AboutScene node]]];
 }
+
 -(void)top: (id)sender{
     
     
@@ -100,6 +105,10 @@
     
 }
 
+-(void)dealloc
+{
+    [super dealloc];
+}
   
 
 @end
