@@ -682,14 +682,7 @@
 				35BDD3021666358F00E7343C /* RootViewController.h */,
 				35BDD3031666358F00E7343C /* RootViewController.m */,
 				35BDD3081666359000E7343C /* GameConfig.h */,
-				35BDD31016663ED900E7343C /* SplashScene.h */,
-				35BDD31116663ED900E7343C /* SplashScene.m */,
-				35E1B511166738470008509C /* MenuScene.h */,
-				35E1B512166738470008509C /* MenuScene.m */,
-				35E1B515166772D50008509C /* GameScene.h */,
-				35E1B516166772D50008509C /* GameScene.m */,
-				35E1B51816684F290008509C /* AboutScene.h */,
-				35E1B51916684F290008509C /* AboutScene.m */,
+				35E1B51B166906D20008509C /* Scenes */,
 				35BDD1521666358A00E7343C /* Resources */,
 				35BDD1661666358A00E7343C /* libs */,
 				35BDD2FB1666358F00E7343C /* Supporting Files */,
@@ -1223,6 +1216,21 @@
 			);
 			name = Classes;
 			path = Resources/Classes;
+			sourceTree = "<group>";
+		};
+		35E1B51B166906D20008509C /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				35BDD31016663ED900E7343C /* SplashScene.h */,
+				35BDD31116663ED900E7343C /* SplashScene.m */,
+				35E1B511166738470008509C /* MenuScene.h */,
+				35E1B512166738470008509C /* MenuScene.m */,
+				35E1B515166772D50008509C /* GameScene.h */,
+				35E1B516166772D50008509C /* GameScene.m */,
+				35E1B51816684F290008509C /* AboutScene.h */,
+				35E1B51916684F290008509C /* AboutScene.m */,
+			);
+			name = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

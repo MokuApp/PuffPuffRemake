@@ -16,7 +16,7 @@
 @implementation AppDelegate
 
 @synthesize window;
-@synthesize withSound,wentToGame;
+@synthesize paused,withSound,wentToGame;
 
 - (void) removeStartupFlicker
 {

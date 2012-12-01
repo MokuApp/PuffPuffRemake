@@ -16,12 +16,14 @@
 	UIWindow			*window;
 	RootViewController	*viewController;
     
+    bool paused;
     bool withSound;
     bool wentToGame;
 }
 +(AppDelegate*) get;
 
 @property (nonatomic, retain) UIWindow *window;
+@property(readwrite,nonatomic) bool paused;
 @property(readwrite,nonatomic) bool wentToGame;
 @property(readwrite,nonatomic) bool withSound;
 

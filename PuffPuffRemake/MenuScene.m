@@ -127,7 +127,11 @@
     
 }
 -(void)vid: (id)sender{
-    
+    if ([AppDelegate get].withSound) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"ButtonPress.caf"pitch:1.0f pan:0.0 gain:1];
+    }
+    NSURL *url = [NSURL URLWithString:@"http://mokuapp.com/"];
+    [[UIApplication sharedApplication] openURL:url];
     
 }
 

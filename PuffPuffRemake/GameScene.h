@@ -12,8 +12,31 @@
 #import "MenuScene.h"
 #import "CCParticleExamples.h"
 
-@interface GameScene : CCLayer {
+@interface GameScene : CCScene {
+    
+}
+@end
+
+@interface GameLayer : CCLayer {
+    
+    CCSprite* back1;
+    CCSprite* back2;
+    
+    CCLabelBMFont *distance;
+    int energy;
+    
+    CCSprite* energyMeter;
+    CCSpriteBatchNode* puffSheet;
+    CCSpriteBatchNode* backElemSheet;
     
 }
 +(id)scene;
+@end
+
+
+@interface PauseLayer : CCLayerColor {
+
+    
+
+}
 @end
