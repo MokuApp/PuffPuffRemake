@@ -234,6 +234,7 @@
 		35E1B513166738470008509C /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1B512166738470008509C /* MenuScene.m */; };
 		35E1B517166772D60008509C /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1B516166772D50008509C /* GameScene.m */; };
 		35E1B51A16684F2A0008509C /* AboutScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1B51916684F290008509C /* AboutScene.m */; };
+		35E1B524166A3E5F0008509C /* Puff.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1B523166A3E5E0008509C /* Puff.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -621,6 +622,8 @@
 		35E1B516166772D50008509C /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 		35E1B51816684F290008509C /* AboutScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutScene.h; sourceTree = "<group>"; };
 		35E1B51916684F290008509C /* AboutScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutScene.m; sourceTree = "<group>"; };
+		35E1B522166A3E5E0008509C /* Puff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Puff.h; sourceTree = "<group>"; };
+		35E1B523166A3E5E0008509C /* Puff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Puff.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -681,6 +684,8 @@
 				35BDD3001666358F00E7343C /* AppDelegate.m */,
 				35BDD3021666358F00E7343C /* RootViewController.h */,
 				35BDD3031666358F00E7343C /* RootViewController.m */,
+				35E1B522166A3E5E0008509C /* Puff.h */,
+				35E1B523166A3E5E0008509C /* Puff.m */,
 				35BDD3081666359000E7343C /* GameConfig.h */,
 				35E1B51B166906D20008509C /* Scenes */,
 				35BDD1521666358A00E7343C /* Resources */,
@@ -1513,6 +1518,7 @@
 				35E1B513166738470008509C /* MenuScene.m in Sources */,
 				35E1B517166772D60008509C /* GameScene.m in Sources */,
 				35E1B51A16684F2A0008509C /* AboutScene.m in Sources */,
+				35E1B524166A3E5F0008509C /* Puff.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

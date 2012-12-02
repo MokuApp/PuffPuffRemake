@@ -39,8 +39,21 @@
 {
     if ((self = [super init])) {
         
+        /*
+        cpInitChipmunk();
         
+        cpBody *staticBody = cpBodyNew(INFINITY, INFINITY);
+        space = cpSpaceNew();
+        
+        space->gravity = ccp(0,0);
+        space->damping = 0.02;
+        space->iterations = 2;
+        space->elasticIterations = 0;
+        */
+        
+        currentLevel = 4;
         energy = 226;
+        self->movingSpeed = 2;
         
         backElemSheet = [CCSpriteBatchNode batchNodeWithFile:@"puffBE.png"];
         [self addChild:backElemSheet z:0];
@@ -60,8 +73,19 @@
         [overlay setPosition:ccp(240,160)];
         
         
+        bFinFrames = [[NSMutableArray alloc] init];
+        for (int i = 1; i < 15; i++) {
+            CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"r%d.png",i]];
+            [bFinFrames addObject:frame];
+        }
+
+        sFinFrames = [[NSMutableArray alloc] init];
+        for (int i = 1; i < 15; i++) {
+            CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"s%d.png",i]];
+            [sFinFrames addObject:frame];
+        }
         
-        
+        puff = [[Puff alloc] initWithPosition:ccp(40,currentLevel*32 +16) theGame:self];
         
         CCSprite* infoBarD = [CCSprite spriteWithSpriteFrameName:@"infoBarDown.png"];
         [puffSheet addChild:infoBarD z:4];
@@ -137,6 +161,52 @@
 }
 
 
+-(void)step: (ccTime)delta
+{
+    /*
+    float fixedTimeStep = 1.0/30;
+    float timeToRun = delta + timeAccumulator;
+    while (timeToRun >= fixedTimeStep) {
+        cpSpaceStep(space, fixedTimeStep);
+        timeToRun = timeToRun - fixedTimeStep;
+    }
+    timeAccumulator = timeToRun;
+     */
+    
+    [puff->bFinSprite setPosition:ccp(puff->mySprite.position.x, puff->mySprite.position.y-1)];
+    [puff->sFinSprite setPosition:ccp(puff->mySprite.position.x+16, puff->mySprite.position.y-5)];
+    
+    int movSpeed = movingSpeed;
+    [back1 setPosition:ccp(back1.position.x - movSpeed * 0.9, back1.position.y)];
+    [back2 setPosition:ccp(back2.position.x - movSpeed * 0.9, back2.position.y)];
+    
+    if (back1.position.x < -240) {
+        int dif = -240 - back1.position.x;
+        [back1 setPosition:ccp(720-dif,back1.position.y)];
+    }
+    if (back2.position.x < -240) {
+        int dif = -240 - back2.position.x;
+        [back2 setPosition:ccp(720-dif,back2.position.y)];
+    }
+     
+    
+    
+    
+}
+
+-(void)onEnter{
+    
+    if (![AppDelegate get].paused) {
+        [super onEnter];
+        
+        if (puff != NULL) {
+            [self schedule:@selector(step:) interval:1/30];
+        }
+    }
+    
+}
+
+
 -(void)pause
 {
     if ([AppDelegate get].paused) {
@@ -159,7 +229,7 @@
         return;
     }
     [AppDelegate get].paused = NO;
-//    [self onEnter];
+    //[self onEnter];
 }
 
 @end
