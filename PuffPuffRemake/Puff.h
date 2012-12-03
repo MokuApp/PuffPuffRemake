@@ -25,7 +25,7 @@
     GameLayer *theGame;
     NSMutableArray *animFrames;
     
-    int currentSize;
+    //int currentSize;
     
 }
 

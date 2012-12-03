@@ -29,6 +29,8 @@
     Puff *puff;
     
     int currentLevel;
+    //int intendedLevel;
+    //float pixelDifference;
     
     CCSprite* back1;
     CCSprite* back2;

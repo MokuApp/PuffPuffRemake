@@ -8,6 +8,26 @@
 
 #import "GameScene.h"
 
+
+
+static void
+eachShape(void *ptr, void* unused)
+{
+	cpShape *shape = (cpShape*) ptr;
+	CCSprite *sprite = (CCSprite*)shape->data;
+	if( sprite ) {
+		cpBody *body = shape->body;
+		
+		// TIP: cocos2d and chipmunk uses the same struct to store it's position
+		// chipmunk uses: cpVect, and cocos2d uses CGPoint but in reality the are the same
+		// since v0.7.1 you can mix them if you want.		
+		[sprite setPosition: body->p];
+		
+		[sprite setRotation: (float) CC_RADIANS_TO_DEGREES( -body->a )];
+	}
+}
+
+
 @implementation GameScene
 
 -(id)init
@@ -39,20 +59,50 @@
 {
     if ((self = [super init])) {
         
-        /*
+        isAccelerometerEnabled_ = YES;
+        
         cpInitChipmunk();
         
-        cpBody *staticBody = cpBodyNew(INFINITY, INFINITY);
         space = cpSpaceNew();
+        cpSpaceResizeStaticHash(space, 100.0f, 10);
+        cpSpaceResizeActiveHash(space, 50, 300);
         
         space->gravity = ccp(0,0);
         space->damping = 0.02;
         space->iterations = 2;
-        space->elasticIterations = 0;
-        */
+        //space->elasticIterations = 0;
+        
+        //for window box
+        /*
+        cpBody *staticBody = cpBodyNew(INFINITY, INFINITY);
+		CGSize wins = [[CCDirector sharedDirector] winSize];
+		cpShape *shape;
+		
+		// bottom
+		shape = cpSegmentShapeNew(staticBody, ccp(0,0), ccp(wins.width,0), 0.0f);
+		shape->e = 1.0f; shape->u = 1.0f;
+		cpSpaceAddStaticShape(space, shape);
+        
+		// top
+		shape = cpSegmentShapeNew(staticBody, ccp(0,wins.height), ccp(wins.width,wins.height), 0.0f);
+		shape->e = 1.0f; shape->u = 1.0f;
+		cpSpaceAddStaticShape(space, shape);
+        
+		// left
+		shape = cpSegmentShapeNew(staticBody, ccp(0,0), ccp(0,wins.height), 0.0f);
+		shape->e = 1.0f; shape->u = 1.0f;
+		cpSpaceAddStaticShape(space, shape);
+        
+		// right
+		shape = cpSegmentShapeNew(staticBody, ccp(wins.width,0), ccp(wins.width,wins.height), 0.0f);
+		shape->e = 1.0f; shape->u = 1.0f;
+		cpSpaceAddStaticShape(space, shape);
+         */
+        
         
         currentLevel = 4;
         energy = 226;
+        //intendedLevel = 4;
         self->movingSpeed = 2;
         
         backElemSheet = [CCSpriteBatchNode batchNodeWithFile:@"puffBE.png"];
@@ -163,7 +213,7 @@
 
 -(void)step: (ccTime)delta
 {
-    /*
+    
     float fixedTimeStep = 1.0/30;
     float timeToRun = delta + timeAccumulator;
     while (timeToRun >= fixedTimeStep) {
@@ -171,10 +221,25 @@
         timeToRun = timeToRun - fixedTimeStep;
     }
     timeAccumulator = timeToRun;
-     */
+    
+	cpSpaceHashEach(space->activeShapes, &eachShape, nil);
+	cpSpaceHashEach(space->staticShapes, &eachShape, nil);
+	cpSpaceRehashStatic(space);
+
     
     [puff->bFinSprite setPosition:ccp(puff->mySprite.position.x, puff->mySprite.position.y-1)];
     [puff->sFinSprite setPosition:ccp(puff->mySprite.position.x+16, puff->mySprite.position.y-5)];
+    
+    
+    /*
+    float intendedPixel = intendedLevel * 32 + 16;
+    float currentPixel = puff->myBody->p.y;
+    pixelDifference = intendedPixel - currentPixel;
+    
+    float coef = 3;
+    
+    puff->myBody->v.y += pixelDifference * (coef/2) * 0.1;
+    */
     
     int movSpeed = movingSpeed;
     [back1 setPosition:ccp(back1.position.x - movSpeed * 0.9, back1.position.y)];
@@ -203,6 +268,28 @@
             [self schedule:@selector(step:) interval:1/30];
         }
     }
+    [[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0/15)];
+    
+}
+
+-(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+{
+    static float prevX = 0, prevY =0;
+    
+#define kFilterFactor 0.05f
+    
+    float accelX = (float) acceleration.x * kFilterFactor + (1 - kFilterFactor) * prevX;
+    float accelY = (float) acceleration.y * kFilterFactor + (1 - kFilterFactor) * prevY;
+    
+    prevX = accelX;
+    prevY = accelY;
+    
+    if (puff) {
+        if (accelX<0 || puff->myBody->p.y > puff->mySprite.textureRect.size.height / 2) {
+            puff->myBody->v.y = 120 * accelX;
+        }
+    }
+    
     
 }
 

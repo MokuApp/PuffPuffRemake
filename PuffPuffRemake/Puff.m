@@ -50,7 +50,7 @@
         [sFinSprite setPosition:pos];
         
         
-        /*
+        
         myBody = cpBodyNew(10, cpMomentForCircle(10, 16, 8, CGPointZero));
         
         myBody->p = pos;
@@ -64,9 +64,9 @@
         myShape->data = mySprite;
         myShape->collision_type = 2;
         cpSpaceAddShape(game->space, myShape);
-         */
         
-        self->currentSize = 0;
+        
+        //self->currentSize = 0;
         
     }
     
