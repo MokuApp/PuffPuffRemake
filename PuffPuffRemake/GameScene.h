@@ -14,8 +14,13 @@
 #import "CCParticleExamples.h"
 
 #import "Puff.h"
+#import "Shark.h"
+#import "SpawnPoint.h"
 
 @class Puff;
+@class Shark;
+@class SpawnPoint;
+
 
 @interface GameScene : CCScene {
     
@@ -34,22 +39,43 @@
     
     CCSprite* back1;
     CCSprite* back2;
+    int movingSpeed;
     
     CCLabelBMFont *distance;
+    int distanceAdvanced;
+    int previousDistance;
+    bool alreadyAdvanced;
     int energy;
     
-    int movingSpeed;
+
     
     
     CCSprite* energyMeter;
     CCSpriteBatchNode* puffSheet;
     CCSpriteBatchNode* backElemSheet;
+    
+    NSMutableArray* sharkFrames;
     NSMutableArray* bFinFrames;
     NSMutableArray* sFinFrames;
     
     
     
     float timeAccumulator;
+    
+    
+    
+    //shark
+    NSMutableArray* sharks;
+    bool releaseShark;
+    int distanceForShark;
+    int releasedSharks;
+    int allowedSaharks;
+    int sinceLastShark;
+    
+    NSMutableArray* spDicts;
+    
+    SpawnPoint *sp;
+    int activeSps;
     
 }
 +(id)scene;

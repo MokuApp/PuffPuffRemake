@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3555549B166E0442004B8E22 /* Shark.m in Sources */ = {isa = PBXBuildFile; fileRef = 3555549A166E0442004B8E22 /* Shark.m */; };
+		3555549F166E3B2E004B8E22 /* SpawnPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3555549E166E3B2E004B8E22 /* SpawnPoint.m */; };
 		35BDD1421666358A00E7343C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BDD1411666358A00E7343C /* QuartzCore.framework */; };
 		35BDD1441666358A00E7343C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BDD1431666358A00E7343C /* OpenGLES.framework */; };
 		35BDD1461666358A00E7343C /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BDD1451666358A00E7343C /* OpenAL.framework */; };
@@ -238,6 +240,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		35555499166E0442004B8E22 /* Shark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shark.h; sourceTree = "<group>"; };
+		3555549A166E0442004B8E22 /* Shark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shark.m; sourceTree = "<group>"; };
+		3555549D166E3B2E004B8E22 /* SpawnPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpawnPoint.h; sourceTree = "<group>"; };
+		3555549E166E3B2E004B8E22 /* SpawnPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpawnPoint.m; sourceTree = "<group>"; };
 		35BDD13D1666358A00E7343C /* PuffPuffRemake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuffPuffRemake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35BDD1411666358A00E7343C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		35BDD1431666358A00E7343C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -684,8 +690,12 @@
 				35BDD3001666358F00E7343C /* AppDelegate.m */,
 				35BDD3021666358F00E7343C /* RootViewController.h */,
 				35BDD3031666358F00E7343C /* RootViewController.m */,
+				35555499166E0442004B8E22 /* Shark.h */,
+				3555549A166E0442004B8E22 /* Shark.m */,
 				35E1B522166A3E5E0008509C /* Puff.h */,
 				35E1B523166A3E5E0008509C /* Puff.m */,
+				3555549D166E3B2E004B8E22 /* SpawnPoint.h */,
+				3555549E166E3B2E004B8E22 /* SpawnPoint.m */,
 				35BDD3081666359000E7343C /* GameConfig.h */,
 				35E1B51B166906D20008509C /* Scenes */,
 				35BDD1521666358A00E7343C /* Resources */,
@@ -1519,6 +1529,8 @@
 				35E1B517166772D60008509C /* GameScene.m in Sources */,
 				35E1B51A16684F2A0008509C /* AboutScene.m in Sources */,
 				35E1B524166A3E5F0008509C /* Puff.m in Sources */,
+				3555549B166E0442004B8E22 /* Shark.m in Sources */,
+				3555549F166E3B2E004B8E22 /* SpawnPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

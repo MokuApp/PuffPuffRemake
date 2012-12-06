@@ -70,40 +70,14 @@ eachShape(void *ptr, void* unused)
         space->gravity = ccp(0,0);
         space->damping = 0.02;
         space->iterations = 2;
-        //space->elasticIterations = 0;
-        
-        //for window box
-        /*
-        cpBody *staticBody = cpBodyNew(INFINITY, INFINITY);
-		CGSize wins = [[CCDirector sharedDirector] winSize];
-		cpShape *shape;
-		
-		// bottom
-		shape = cpSegmentShapeNew(staticBody, ccp(0,0), ccp(wins.width,0), 0.0f);
-		shape->e = 1.0f; shape->u = 1.0f;
-		cpSpaceAddStaticShape(space, shape);
-        
-		// top
-		shape = cpSegmentShapeNew(staticBody, ccp(0,wins.height), ccp(wins.width,wins.height), 0.0f);
-		shape->e = 1.0f; shape->u = 1.0f;
-		cpSpaceAddStaticShape(space, shape);
-        
-		// left
-		shape = cpSegmentShapeNew(staticBody, ccp(0,0), ccp(0,wins.height), 0.0f);
-		shape->e = 1.0f; shape->u = 1.0f;
-		cpSpaceAddStaticShape(space, shape);
-        
-		// right
-		shape = cpSegmentShapeNew(staticBody, ccp(wins.width,0), ccp(wins.width,wins.height), 0.0f);
-		shape->e = 1.0f; shape->u = 1.0f;
-		cpSpaceAddStaticShape(space, shape);
-         */
         
         
+        distanceAdvanced = 0;
         currentLevel = 4;
         energy = 226;
         //intendedLevel = 4;
         self->movingSpeed = 2;
+        allowedSaharks = 2;
         
         backElemSheet = [CCSpriteBatchNode batchNodeWithFile:@"puffBE.png"];
         [self addChild:backElemSheet z:0];
@@ -135,7 +109,56 @@ eachShape(void *ptr, void* unused)
             [sFinFrames addObject:frame];
         }
         
+        //prepare shark frames
+        sharkFrames = [[NSMutableArray alloc] init];
+        for (int i =1; i <= 30; i++) {
+            CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"sharkAnimation_%d.png", i]];
+            [sharkFrames addObject:frame];
+        }
+        
+        
         puff = [[Puff alloc] initWithPosition:ccp(40,currentLevel*32 +16) theGame:self];
+        
+        
+        
+        
+        sharks = [[NSMutableArray alloc] initWithCapacity:5];
+        for (int i=0; i<2; i++) {
+            Shark *f = [[Shark alloc] initWithPosition:ccp(3000,1000+200*i) theGame:self];
+            
+            CCAnimation *animation = [CCAnimation animationWithFrames:sharkFrames delay:0.1f];
+            [f->mySprite runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animation restoreOriginalFrame:NO]]];
+            
+            [sharks addObject:f];
+            [f release];
+            
+        }
+        [sharkFrames release];
+        
+        sp = [[SpawnPoint alloc] initWithPosition:ccp(750,200) theGame:self];
+
+        spDicts = [[NSMutableArray alloc] initWithCapacity:17];
+        for (int i =0; i<17; i++) {
+            
+            NSMutableDictionary *sd = [[NSMutableDictionary 
+                                        dictionaryWithObjects:[NSArray arrayWithObjects:
+                                                               [NSNumber numberWithInt:750],
+                                                               [NSNumber numberWithInt:16+16*i],
+                                                               [NSNumber numberWithInt:0],
+                                                               [NSNumber numberWithInt:1],
+                                                               nil] 
+                                        forKeys:[NSArray arrayWithObjects:
+                                                 @"posX",
+                                                 @"posY",
+                                                 @"lastTime",
+                                                 @"lastCoralSize",
+                                                 nil]]
+                                       retain];
+            [spDicts addObject:sd];
+            [sd release];
+        }
+        
+        
         
         CCSprite* infoBarD = [CCSprite spriteWithSpriteFrameName:@"infoBarDown.png"];
         [puffSheet addChild:infoBarD z:4];
@@ -171,6 +194,8 @@ eachShape(void *ptr, void* unused)
         [pmenu setPosition:ccp(0,0)];
         [pause setPosition:ccp(465,310)];
         
+        
+        [self schedule:@selector(advance) interval:0.5];
         [self startGame];
         
         
@@ -202,12 +227,56 @@ eachShape(void *ptr, void* unused)
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.2f scene:[MenuScene node]]];
 }
 
+-(void)advance
+{
+    self->distanceAdvanced++;
+    
+    [distance setString:[NSString stringWithFormat:@"DISTANCE: %d", distanceAdvanced]];
+}
+
 
 -(void)startGame
 {
     if ([AppDelegate get].withSound) {
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"PuffPuff_GameplayMusic.caf" loop:YES];
     }
+}
+
+-(void)positionElems
+{
+
+    int iForPos = arc4random() % 17;
+    NSMutableDictionary *d = (NSMutableDictionary*)[spDicts objectAtIndex:iForPos];
+    
+    if (sinceLastShark > 11) {
+        sp->type = 1;
+    }
+    
+    
+    [sp setPosition:ccp([[d objectForKey:@"posX"] intValue] , [[d objectForKey:@"posY"] intValue])];
+    sp->lastTime = [[d objectForKey:@"lastTime"] intValue];
+    
+    switch (sp->type) {
+        case 1:
+            if (distanceAdvanced > 15 && releaseShark < allowedSaharks) {
+                self->releaseShark = YES;
+                for (Shark *f in sharks) {
+                    if (self->releaseShark && !f->isActivated) {
+                        [f->mySprite setVisible:YES];
+                        f->isActivated = YES;
+                        self->releaseShark = NO;
+                        f->myBody->p = sp.position;
+                        releasedSharks++;
+                        sinceLastShark = 0;
+                    }
+                }
+            }
+            break;
+            
+        default:
+            break;
+    }
+    sinceLastShark++;
 }
 
 
@@ -230,16 +299,23 @@ eachShape(void *ptr, void* unused)
     [puff->bFinSprite setPosition:ccp(puff->mySprite.position.x, puff->mySprite.position.y-1)];
     [puff->sFinSprite setPosition:ccp(puff->mySprite.position.x+16, puff->mySprite.position.y-5)];
     
+    if (previousDistance == distanceAdvanced) {
+        alreadyAdvanced = YES;
+    }
     
-    /*
-    float intendedPixel = intendedLevel * 32 + 16;
-    float currentPixel = puff->myBody->p.y;
-    pixelDifference = intendedPixel - currentPixel;
+    if (!alreadyAdvanced && distanceAdvanced % 2 == 0) {
+        [self positionElems];
+    }
     
-    float coef = 3;
+    alreadyAdvanced = NO;
+    previousDistance  = distanceAdvanced;
     
-    puff->myBody->v.y += pixelDifference * (coef/2) * 0.1;
-    */
+    
+    for (Shark *s  in sharks) {
+        [s updateMe];
+    }
+    
+
     
     int movSpeed = movingSpeed;
     [back1 setPosition:ccp(back1.position.x - movSpeed * 0.9, back1.position.y)];
